@@ -45,12 +45,38 @@ var Checker = React.createClass({
   }
 });
 
+var Input = React.createClass({
+
+  onButtonClick: function(e){
+    e.preventDefault(); // e is regular javascript event handler object
+
+    var name = this.refs.name.value; //name is an  HTML attribute and a node element, and its value is fetched by .value
+
+    alert(name);
+  },
+
+  render : function(){
+    return(
+        <div>
+          <form onSubmit={this.onButtonClick}>
+            <input type= 'text' ref="name"/>
+            <button>Name will be set</button>
+          </form>
+        </div>
+    );
+  }
+
+
+}); // onButtonClick is a user defined function unlike  render and getDefaultProps given above
+ //ref above lets us give us name to an element that we can access later
+
 var swagger = 'Himaja';
 
 ReactDOM.render( //most common react DOM
     <dom>
       <Greeter name = 'Manidhar'/>
       <Checker name = {swagger} message = "Hello there! If you recieve this message, this will be printed"/>
+      <Input/>
     </dom>,
   document.getElementById('app')
 );                                  //name can be sent directly
